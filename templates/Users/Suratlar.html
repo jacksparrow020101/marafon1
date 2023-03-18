@@ -1,0 +1,62 @@
+{% extends 'Users/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <section id="ft-breadcrumb" class="ft-breadcrumb-section position-relative"
+             data-background="{% static 'assets/slider-1-1.jpg' %}">
+        <span class="background_overlay"></span>
+        <span class="design-shape position-absolute"><img src="{% static 'assets/img/2022.png' %}" style="width: 240px"></span>
+        <div class="container">
+            <div class="ft-breadcrumb-content headline text-center position-relative">
+                <h2>Suratlar</h2>
+            </div>
+        </div>
+    </section>
+    <section id="ft-blog-feed-details" class="ft-blog-feed-details-section page-padding">
+        <div class="container">
+            <div class="ft-blog-feed-details-content">
+                <div class="row">
+                    <div class="ft-side-bar-widget headline ul-li-block">
+                        <div class="gallery-widget">
+                            <h3 class="widget-title position-relative">Suratlar</h3>
+                            <ul class="zoom-gallery">
+                                {% for surat in surat_list %}
+                                    <li><a href="{{ surat.image.url }}"
+                                           data-source="{{ surat.image.url }}"><img
+                                            src="{{ surat.image.url }}" style="width: 225px; height: 150px;" alt=""></a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ft-pagination-item  ul-li">
+                <ul>
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="{% url 'Surat' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}">Yza</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="">Yza</a></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="{% url 'Surat' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="{% url 'Surat' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}">Öňe</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="">Öňe</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

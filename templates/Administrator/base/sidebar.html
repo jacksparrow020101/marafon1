@@ -1,0 +1,30 @@
+{% load static %}
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li>
+            <a href="{% url 'Administrator_Bash_Sahypa' %}"><i class="fa fa-home mr-2"
+                                                               aria-hidden="true"></i>Baş sahypa</a>
+        </li>
+        <li>
+            <a href="{% url 'Administrator_Esasy_Surat' %}"><i class="fa fa-dashboard mr-2"
+                                                               aria-hidden="true"></i>Baş sahypadaky
+                surat</a>
+        </li>
+        <li>
+            <a href="{% url 'Administrator_Syyasy_Habar_List' %}"><i class="fa fa-newspaper-o mr-2"
+                                                                     aria-hidden="true"></i>Habarlar</a>
+        </li>
+        <li>
+            <a href="{% url 'Administrator_Gazet_List' %}"><i class="fa fa-book"
+                                                              aria-hidden="true"> </i> Metbugat</a>
+        </li>
+        <li>
+            <a href="{% url 'Administrator_Surat_List' %}"><i class="fa fa-book"
+                                                              aria-hidden="true"> </i> Suratlar</a>
+        </li>
+        <li>
+            <a href="{% url 'Administrator_Wideo_List' %}"><i class="fa fa-book"
+                                                              aria-hidden="true"> </i> Wideolar</a>
+        </li>
+    </ul>
+</div>

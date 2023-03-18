@@ -1,0 +1,137 @@
+{% extends 'Administrator/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                <div class="row">
+                    <div class="col-5">{{ name }}</div>
+                    <div class="col-5">
+                        <form method="get">
+                            <button class="btn btn-primary" type="submit" style="float:right;"><i
+                                    class="fa fa-search"></i>Gözle
+                            </button>
+                            <input class="form-control" type="search" placeholder="Gözleg" aria-label="Search"
+                                   data-width="250" style="width: 250px;float:right;" name="filter"
+                                   value="{{ filter }}">
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <a href="{% url 'Administrator_Gazet_Create' %}" class="btn btn-primary pull-right"><i
+                                class="fa fa-plus mr-1"
+                                aria-hidden="true"></i>
+                            Gazet goş</a>
+                    </div>
+                </div>
+            </h5>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-hover mt-3">
+        <thead>
+        <tr>
+            <th>T/b</th>
+            <th>Ady</th>
+            <th>Surat</th>
+            <th>Goýlan senesi</th>
+            <th>Okaldy</th>
+            <th>Ýüklenen sany</th>
+            <th>Amal</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for model in metbugat_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ model.ady }}</td>
+                <td>
+                    <a href="{{ model.pdf.url }}">
+                        <img src="{{ model.image.url }}" class="img-fluid mb-2"
+                             alt="{{ model.name }}" height="100px" width="70px"/></a>
+                </td>
+                <td>{{ model.date }}</td>
+                <td>{{ model.read }}</td>
+                <td>{{ model.download }}</td>
+                <td style="width: 190px;">
+                    <a href="{% url 'Administrator_Gazet_Update' model.id %}" style="position: center;"
+                       class="btn btn-outline-success btn-sm mb-1">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i> Üýtget
+                    </a>
+                    <button type="button" class="btn btn-outline-dark btn-sm mb-1 delete_data"
+                            data-location="{% url 'Administrator_Gazet_Delete' model.id %}">
+
+                        <i class="fa fa-trash mr-1" aria-hidden="true"></i> Poz
+                    </button>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="8" class="text-center bg-warning"> Maglumat ýok!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url 'Administrator_Gazet_List' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}">Yza</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="">Yza</a></li>
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url 'Administrator_Gazet_List' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}">{{ i }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url 'Administrator_Gazet_List' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}">Öňe</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="">Öňe</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(".delete_data").click(function () {
+            var id = $(this).data("location");
+            console.log(id)
+            var cnf = confirm("Maglumaty pozmak isleýaňizmi?");
+            if (cnf) {
+                location = id
+            } else {
+
+            }
+        })
+    </script>
+    <script>
+        $(function () {
+            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+            $('.filter-container').filterizr({gutterPixels: 3});
+            $('.btn[data-filter]').on('click', function () {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })
+    </script>
+    <script src="{% static 'admin/js/ekko-lightbox.min.js' %}"></script>
+{% endblock %}

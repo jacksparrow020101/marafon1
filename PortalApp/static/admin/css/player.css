@@ -1,0 +1,93 @@
+#window {
+    width: 100%;
+    min-height: 100%;
+    z-index: 30;
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0
+}
+#window,
+#window * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+#background-close {
+    width: 100%;
+    min-height: 100%;
+    z-index: 31;
+    position: fixed;
+    top: 0;
+    left: 0
+}
+#back-lightbox {
+    width: 700px;
+    height: 540px;
+    margin: auto;
+    z-index: 32
+}
+.lightbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    margin: 0;
+    background-color: #FFF;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, .3);
+    z-index: 53
+}
+#close-icon {
+    background-image: url(./public/img/close-icon.png);
+    background-repeat: no-repeat;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 551
+}
+#close-icon:hover {
+    cursor: pointer
+}
+#jquery-script-menu img {
+    width: 290px;
+    border: 3px solid #000;
+    top: 10px;
+}
+.jquery-script-center {
+    width: 960px;
+    margin: 0 auto;
+}
+.jquery-script-center ul {
+    width: 212px;
+    float: left;
+    line-height: 45px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.jquery-script-center a {
+    text-decoration: none;
+}
+.jquery-script-ads {
+    width: 728px;
+    height: 90px;
+    float: right;
+}
+.jquery-script-clear {
+    clear: both;
+    height: 0;
+}
+#ref {
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    top: 3px;
+}
+#ref a {
+    color: #4994d8;
+    text-decoration:none;
+}

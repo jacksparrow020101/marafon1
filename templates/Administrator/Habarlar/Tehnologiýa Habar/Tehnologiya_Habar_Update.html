@@ -1,0 +1,55 @@
+{% extends 'Administrator/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            {{ name }}
+            <a href="{% url 'Administrator_Tehnologiya_Habar_List' %}" class="btn btn-primary pull-right"><i
+                    class="fa fa-bars"
+                    aria-hidden="true"></i>
+                {{ list }}</a>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group row">
+                        {% if field.field.widget.input_type == None %}
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ field.label }}</label>
+                            <div class="col-md-4">
+                                <textarea name="{{ field.name }}" id="{{ field.name }}" class="form-control"
+                                          style="height: 150px">{{ field.value }}</textarea>
+                                {% if field.errors %}
+                                    <div class="alert alert-danger" style="margin: 10px;">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ field.label }}</label>
+                            <div class="col-md-4">
+                                <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
+                                       id="{{ field.name }}" class="form-control" value="{{ field.value }}">
+                                {% if field.errors %}
+                                    <div class="alert alert-danger" style="margin: 10px;">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="form-group row">
+                    <div class="col-md-4 offset-md-4">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-floppy-o mr-1" aria-hidden="true"></i> Ýatda sakla
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
