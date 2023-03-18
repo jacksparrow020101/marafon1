@@ -1,0 +1,100 @@
+{% extends 'Users/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <section id="ft-blog" class="ft-blog-section">
+        <div class="container">
+        </div>
+    </section>
+    <section id="ft-blog-post-feed" class="ft-blog-post-feed-section page-padding">
+        <div class="container">
+            <div class="ft-blog-top-content d-flex justify-content-between align-items-end flex-wrap">
+                <div class="ft-section-title headline pera-content">
+                    <span class="sub-title"></span>
+                    <h2>{{ name }}
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="ft-blog-post-feed-content">
+                        {% for habar in habar_list %}
+                            <div class="ft-blog-post-feed-innerbox">
+                                <div class="ft-blog-post-feed-img">
+                                    <img src="{{ habar.image.url }}" alt="{{ habar.name }}"
+                                         style="width: 871px;height: 591px">
+                                </div>
+                                <div class="ft-blog-post-feed-text-wrapper headline pera-content">
+                                    <div class="blog-meta">
+                                        <a><i class="fas fa-calendar-alt"></i> {{ habar.date }}</a>
+                                        <a><i class="far fa-eye"></i> {{ habar.read }}</a>
+                                    </div>
+                                    <div class="ft-blog-feed-title-text">
+                                        <h3><a href="{% url 'Harby_Habar' habar.pk %}">{{ habar.name }}</a>
+                                        </h3>
+                                        <p>{{ habar.descriptions |truncatechars:250 }}</p>
+                                    </div>
+                                    <div class="ft-btn-2">
+                                        <a href="{% url 'Harby_Habar' habar.pk %}">
+                                            <i class="icon-first flaticon-right-arrow"></i>
+                                            <span>Oka</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="ft-pagination-item  ul-li">
+                        <ul>
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url url %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}">Yza</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="">Yza</a></li>
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url url %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}">{{ i }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url url %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}">Öňe</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="">Öňe</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ft-side-bar-wrapper top-stikcy">
+                        <div class="ft-side-bar-widget-area">
+                            <div class="ft-side-bar-widget search-widget-area headline ul-li-block">
+                                <div class="search-widget position-relative">
+                                    <form>
+                                        <input type="search" placeholder="Gözleg" name="filter" value="{{ filter }}">
+                                        <button><i class="far fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="ft-side-bar-widget headline ul-li-block">
+                                <div class="category-widget">
+                                    <h3 class="widget-title position-relative">Categories</h3>
+                                    <ul>
+                                        <li><a href="blog.html">Ocean Freight <span>3</span></a></li>
+                                        <li><a href="blog.html">Air Freight <span>3</span></a></li>
+                                        <li><a href="blog.html">Rail Project <span>3</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

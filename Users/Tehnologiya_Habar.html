@@ -1,0 +1,73 @@
+{% extends 'Users/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <section id="ft-blog" class="ft-blog-section">
+    </section>
+    <section id="ft-blog-feed-details" class="ft-blog-feed-details-section page-padding">
+        <div class="container">
+            <div class="ft-blog-feed-details-content">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h2><strong>{{ habar_model.name }}</strong></h2>
+                        <div class="blog-details-img-text-wrapper">
+                            <div class="blog-details-img position-relative">
+                                <img src="{{ habar_model.image.url }}" alt="{{ habar_model.name }}"
+                                     style="width: 880px;height: 610px;">
+                            </div>
+                            <div class="ft-blog-details-item">
+                                <div class="blog-details-text headline">
+                                    <div class="ftd-blog-meta-2  position-relative text-capitalize">
+                                        <a><i class="far fa-clock"></i>{{ habar_model.date }}</a>
+                                        <a><i class="far fa-eye"></i> {{ habar_model.read }}</a>
+                                    </div>
+                                    <article>
+                                        {{ habar_model.descriptions }}
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ft-side-bar-wrapper top-stikcy">
+                            <div class="ft-side-bar-widget-area">
+                                <div class="ft-side-bar-widget headline ul-li-block">
+                                    <div class="category-widget">
+                                        <h3 class="widget-title position-relative">Habarlar</h3>
+                                        <ul>
+                                            <li><a href="">Ocean Freight <span>3</span></a></li>
+                                            <li><a href="">Air Freight <span>3</span></a></li>
+                                            <li><a href="">Rail Project <span>3</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="ft-side-bar-widget headline ul-li-block">
+                                    <div class="recent-news-widget">
+                                        <h3 class="widget-title position-relative">{{ name }}</h3>
+                                        {% for h_model in habar_models %}
+                                            <div class="recent-blog-img-text clearfix">
+                                                <div class="recent-blog-img float-left">
+                                                    <img src="{{ h_model.image.url }}" alt="{{ h_model.name }}">
+                                                </div>
+                                                <div class="recent-blog-text headline">
+                                                    <h3>
+                                                        <a href="{% url 'Tehnologiya_Habar' h_model.pk %}">{{ h_model.name | truncatechars:25 }}</a>
+                                                    </h3>
+                                                    <span><i
+                                                            class="far fa-calendar-alt"></i> {{ h_model.date }}</span><br>
+                                                    <a><i class="far fa-eye"></i> {{ h_model.read }}</a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

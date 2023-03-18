@@ -1,0 +1,118 @@
+{% load static %}
+<header id="ft-header" class="ft-header-section header-style-one">
+    <div class="ft-header-content-wrapper position-relative">
+        <div class="container">
+            <div class="ft-header-content position-relative">
+                <div class="ft-brand-logo">
+                    <a href="{% url 'Bash_Sahypa' %}"><img src="{% static 'assets/img/2022.png' %}" style="max-width: 35%" alt=""></a>
+                </div>
+                <div class="ft-header-menu-top-cta position-relative">
+                    <div class="ft-header-top ul-li">
+                        <ul>
+                            <li><i class="fal fa-envelope"></i>ADU@edu.com</li>
+                            <li><i class="fal fa-map-marker-alt"></i>Harby institut 4-nji bina 2-nji gat</li>
+                        </ul>
+                    </div>
+                    <div class="ft-header-main-menu d-flex justify-content-end align-items-center">
+                        <nav class="ft-main-navigation clearfix ul-li">
+                            <ul id="ft-main-nav" class="nav navbar-nav clearfix">
+                                <li>
+                                    <a href="{% url 'Bash_Sahypa' %}">Baş sahypa</a>
+                                </li>
+                                <li><a href="">Wikipedia</a></li>
+                                <li class="dropdown">
+                                    <a href="">Bölümler</a>
+                                    <ul class="dropdown-menu clearfix">
+                                        <li><a href="http://192.168.168.192:8008">Ders+ </a></li>
+                                        <li><a href="http://192.168.168.192:8008">Synag ulgamy </a></li>
+                                        <li><a href="http://192.168.168.192:8008">E-Žurnal</a></li>
+                                        <li><a href="http://192.168.168.192:8008">E-Kitaphana</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="!#">Multimedia</a>
+                                    <ul class="dropdown-menu clearfix">
+                                        <li><a href="{% url 'Wideo' %}">Wideolar </a></li>
+                                        <li><a href="{% url 'Surat' %}">Suratlar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="!#">Metbugat</a>
+                                    <ul class="dropdown-menu clearfix">
+                                        <li><a href="{% url 'Gazetler' %}">Gazetler</a></li>
+                                        <li><a href="{% url 'Zurnallar' %}">Žurnallar </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="ft-header-cta-btn">
+                            <a class="d-flex justify-content-center align-items-center" href="contact.html">ÝÜZ TUT</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile_menu position-relative">
+                    <div class="mobile_menu_button open_mobile_menu">
+                        <i class="fal fa-bars"></i>
+                    </div>
+                    <div class="mobile_menu_wrap">
+                        <div class="mobile_menu_overlay open_mobile_menu"></div>
+                        <div class="mobile_menu_content">
+                            <div class="mobile_menu_close open_mobile_menu">
+                                <i class="fal fa-times"></i>
+                            </div>
+                            <div class="m-brand-logo">
+                                <a href="!#"><img src="{% static 'assets/img/logo/logo4.png' %}" alt=""></a>
+                            </div>
+                            <nav class="mobile-main-navigation  clearfix ul-li">
+                                <ul id="m-main-nav" class="navbar-nav text-capitalize clearfix">
+                                    <li>
+                                        <a href="{% url 'Bash_Sahypa' %}">Baş sahypa</a>
+                                    </li>
+                                    <li><a href="about.html">Wikipedia</a></li>
+                                    <li class="dropdown">
+                                        <a href="!#">Bölümler</a>
+                                        <ul class="dropdown-menu clearfix">
+                                            <li><a href="service.html">Service Page </a></li>
+                                            <li><a href="service-single.html">Service Details</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="!#">Multimedia</a>
+                                        <ul class="dropdown-menu clearfix">
+                                            <li><a href="taze.html">News </a></li>
+                                            <li><a href="taze_single.html">News Details</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="!#">Metbugat</a>
+                                        <ul class="dropdown-menu clearfix">
+                                            <li><a href="team.html">Team Page </a></li>
+                                            <li><a href="team-single.html">Team Details </a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            <li><a href="contact.html">Contact Page</a></li>
+                                            <li><a href="faq.html">Faq Page</a></li>
+                                            <li><a href="pricing.html">Pricing Page</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /Mobile-Menu -->
+                </div>
+            </div>
+        </div>
+        <div class="ft-header-cta-info d-flex">
+            <div class="ft-header-cta-icon d-flex justify-content-center align-items-center">
+                <i class="flaticon-call"></i>
+            </div>
+            <div class="ft-header-cta-text headline pera-content">
+                <p>Habarlaşmak üçin</p>
+                <h3>+993 12 40 50 42</h3>
+                <h3>+993 12 40 51 37</h3>
+            </div>
+        </div>
+    </div>
+</header>

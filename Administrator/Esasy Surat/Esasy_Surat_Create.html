@@ -1,0 +1,42 @@
+{% extends 'Administrator/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            Surat goş
+            <a href="{% url 'Administrator_Esasy_Surat' %}" class="btn btn-primary pull-right"><i
+                    class="fa fa-bars"
+                    aria-hidden="true"></i>
+                Baş sahypadaky suratlar</a>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ field.label }}</label>
+                        <div class="col-md-4">
+                            <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
+                                   id="{{ field.name }}" class="form-control">
+                            {% if field.errors %}
+                                <div class="alert alert-danger" style="margin: 10px;">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="form-group row">
+                    <div class="col-md-4 offset-md-4">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-floppy-o mr-1" aria-hidden="true"></i> Ýatda sakla
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

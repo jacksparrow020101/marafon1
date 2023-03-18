@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#    <link rel="icon" href="{% static 'YG.png' %}">#}
+    <title>{% block title %}Administrator{% endblock %}</title>
+    <link href="{% static 'admin/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/nav-sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/adminlte.min.css' %}" rel="stylesheet">
+    {% block css %}
+
+    {% endblock %}
+    <style>
+        body {
+            background: url({% static 'admin/8-border-green.svg' %});
+            background-repeat: repeat;
+            background-size: 25px;
+        }
+
+        #fixedButton {
+            opacity: 0.5;
+            position: fixed;
+            bottom: 15px;
+            left: 20px;
+            width: 100px;
+            -webkit-transition: opacity .3s ease-out;
+            transition: opacity .3s ease-out;
+        }
+
+        #fixedButton:hover {
+            opacity: 1;
+        }
+
+        .fixed-top {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        #sidebar-wrapper .fa {
+            color: rgba(255, 255, 255, 0.8);;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-admin">
+    <div class="container-fluid">
+        <button class="btn btn-success mr-1" id="menu-toggle">
+            <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+        </button>
+        <a href="" class="btn btn-success ml-1 mr-1"><i class="fa fa-home fa-lg"></i></a>
+        <a class="navbar-brand mr-auto ml-1" href="">
+            Administrator
+        </a>
+        {% url 'Administrator_Syyasy_Habar_List' as Administrator_Syyasy_Habar_List %}
+        {% url 'Administrator_Tehnologiya_Habar_List' as Administrator_Tehnologiya_Habar_List %}
+        {% url 'Administrator_Sport_Habar_List' as Administrator_Sport_Habar_List %}
+        {% url 'Administrator_Harby_Habar_List' as Administrator_Harby_Habar_List %}
+        {% if request.path == Administrator_Syyasy_Habar_List or request.path == Administrator_Tehnologiya_Habar_List or request.path == Administrator_Sport_Habar_List or request.path == Administrator_Harby_Habar_List %}
+            <a href="{% url 'Administrator_Syyasy_Habar_List' %}" class="btn btn-primary pull-right">Syýasy habar</a>
+            <a href="{% url 'Administrator_Tehnologiya_Habar_List' %}" class="btn btn-primary pull-right">Tehnologiýa
+                habar</a>
+            <a href="{% url 'Administrator_Sport_Habar_List' %}" class="btn btn-primary pull-right">Sport habar</a>
+            <a href="{% url 'Administrator_Harby_Habar_List' %}" class="btn btn-primary pull-right">Harby habar</a>
+        {% endif %}
+        {% url 'Administrator_Gazet_List' as Administrator_Gazet_List %}
+        {% url 'Administrator_Zurnal_List' as Administrator_Zurnal_List %}
+        {% if request.path == Administrator_Gazet_List or request.path == Administrator_Zurnal_List %}
+            <a href="{% url 'Administrator_Gazet_List' %}" class="btn btn-primary pull-right">Gazet goş</a>
+            <a href="{% url 'Administrator_Zurnal_List' %}" class="btn btn-primary pull-right">Žurnal goş</a>
+        {% endif %}
+    </div>
+</nav>
+<div id="wrapper" class="toggled">
+    {% include 'Administrator/base/sidebar.html' %}
+    <div id="page-content-wrapper">
+        {% if messages %}
+            <div class="form-group">
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    {% if message.tags == 'success' %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{% static 'admin/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    $(document).ready(function () {
+        if ($(window).width() < 1200) {
+            $('#wrapper').removeClass('toggled');
+        } else {
+        }
+    });
+</script>
+{% block js %}
+
+{% endblock %}
+</html>
+
+
+
+

@@ -1,0 +1,274 @@
+{% extends 'Users/base/base.html' %}
+{% load static %}
+{% block content %}
+    <rs-module-wrap id="rev_slider_27_1_wrapper" data-alias="slider-7" data-source="gallery"
+                    style="visibility:hidden;background:transparent;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
+        <rs-module id="rev_slider_27_1" style="" data-version="6.5.8">
+            <rs-slides>
+                {% for esasy_surat_model in esasy_surat_models %}
+                    <rs-slide style="position: absolute;" data-key="rs-{{ esasy_surat_model.id }}" data-title="Slide"
+                              data-thumb="{{ esasy_surat_model.image.url }}" data-in="o:0;" data-out="a:false;">
+                        <img src="{{ esasy_surat_model.image.url }}" alt="Image" title="slider-1" width="1614"
+                             height="908"
+                             class="rev-slidebg tp-rs-img" data-parallax="3" data-panzoom="d:10000;ss:100;se:120%;"
+                             data-no-retina>
+                        <rs-layer
+                                id="slider-27-slide-70-layer-0"
+                                data-type="image"
+                                data-rsp_ch="on"
+                                data-text="w:normal;s:20,16,12,7;l:0,20,15,9;"
+                                data-dim="w:['100%','100%','100%','100%'];h:['100%','100%','100%','100%'];"
+                                data-basealign="slide"
+                                data-frame_999="o:0;st:w;"
+                                style="z-index:8;"
+                        ><img src="{% static 'assets/slider-shape1.png' %}" alt="" class="tp-rs-img" width="1903"
+                              height="901"
+                              data-c="cover-proportional" data-no-retina>
+                        </rs-layer>
+                        <rs-layer
+                                id="slider-27-slide-70-layer-1"
+                                data-type="text"
+                                data-rsp_ch="on"
+                                data-xy="xo:15px,12px,9px,5px;yo:340px,280px,212px,124px;"
+                                data-text="w:normal;s:72,59,44,40;l:80,66,50,40;fw:700;"
+                                data-frame_0="o:1;"
+                                data-frame_0_chars="d:5;o:0;rX:-90deg;oZ:-50;"
+                                data-frame_1="sp:1750;"
+                                data-frame_1_chars="e:power4.inOut;d:10;oZ:-50;"
+                                data-frame_999="o:0;st:w;"
+                                style="z-index:9;font-family:'Poppins';">
+                            {{ esasy_surat_model.name }}
+                        </rs-layer>
+                        <rs-layer
+                                id="slider-27-slide-70-layer-2"
+                                data-type="text"
+                                data-rsp_ch="on"
+                                data-xy="xo:15px,12px,9px,5px;yo:535px,445px,338px,219px;"
+                                data-text="w:normal;s:18,14,16,16;l:25,20,20,20;fw:500;"
+                                data-frame_0="x:-100%;"
+                                data-frame_0_mask="u:t;"
+                                data-frame_1="e:power4.inOut;st:1000;sp:1300;"
+                                data-frame_1_mask="u:t;"
+                                data-frame_999="o:0;st:w;"
+                                style="z-index:10;font-family:'Roboto';">
+                            {{ esasy_surat_model.title }}
+                        </rs-layer>
+                    </rs-slide>
+                {% endfor %}
+            </rs-slides>
+        </rs-module>
+    </rs-module-wrap>
+    <section id="ft-blog" class="ft-blog-section">
+        <div class="container">
+            <div class="ft-blog-top-content d-flex justify-content-between align-items-end flex-wrap">
+                <div class="ft-section-title headline pera-content">
+                    <span class="sub-title"></span>
+                    <h2>Syýasy habarlar
+                    </h2>
+                </div>
+                <div class="ft-btn">
+                    <a class="d-flex justify-content-center align-items-center" href="{% url 'Syyasy_Habarlar' %}">Beýleki
+                        habarlar</a>
+                </div>
+            </div>
+            <div class="ft-blog-feed-content">
+                <div class="row">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="10ms" data-wow-duration="1500ms">
+                        <div class="ft-blog-feed-wrapper">
+                            {% if syyasy_habar_model %}
+                                <div class="ft-blog-news-feed-innerbox">
+
+                                    <div class="ft-blog-feed-img">
+                                        <a href="{% url 'Syyasy_Habar' syyasy_habar_model.id %}"><img
+                                                src="{{ syyasy_habar_model.image.url }}"
+                                                alt="{{ syyasy_habar_model.name }}"></a>
+                                    </div>
+                                    <div class="ft-blog-feed-text headline pera-content">
+                                        <div class="ft-blog-meta d-flex justify-content-between flex-wrap">
+                                            <div class="ft-blog-data">
+                                                <a><i class="far fa-calendar-alt"></i>{{ syyasy_habar_model.date }}</a>
+                                            </div>
+                                            <div class="ft-blog-comment-view">
+                                                <a><i class="far fa-eye"></i> {{ syyasy_habar_model.read }}</a>
+                                            </div>
+                                        </div>
+                                        <h3>
+                                            <a href="{% url 'Syyasy_Habar' syyasy_habar_model.id %}">{{ syyasy_habar_model.name }}</a>
+                                        </h3>
+                                        <p>{{ syyasy_habar_model.descriptions |truncatechars:200 }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ft-blog-feed-wrapper-2">
+                            {% for s_h_model in syyasy_habar_models %}
+                                <div class="ft-blog-news-feed-innerbox wow fadeInUp"
+                                     data-wow-delay="{{ forloop.counter }}90ms"
+                                     data-wow-duration="1500ms">
+                                    <div class="ft-blog-feed-img">
+                                        <a href="{% url 'Syyasy_Habar' s_h_model.pk %}"><img
+                                                src="{{ s_h_model.image.url }}" alt="{{ s_h_model.name }}"></a>
+                                    </div>
+                                    <div class="ft-blog-feed-text headline pera-content">
+                                        <div class="ft-blog-meta d-flex justify-content-between flex-wrap">
+                                            <div class="ft-blog-data">
+                                                <a><i class="far fa-calendar-alt"></i>{{ s_h_model.date }}</a>
+                                            </div>
+                                            <div class="ft-blog-comment-view">
+                                                <a><i class="far fa-eye"></i> {{ s_h_model.read }}</a>
+                                            </div>
+                                        </div>
+                                        <h3>
+                                            <a href="{% url 'Syyasy_Habar' s_h_model.pk %}">{{ s_h_model.name |truncatechars:25 }}</a>
+                                        </h3>
+                                        <p>{{ s_h_model.descriptions |truncatechars:50 }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ft-project" class="ft-project-section position-relative">
+        <div class="container">
+            <div class="ft-project-content d-flex justify-content-between align-items-end flex-wrap">
+                <div class="ft-section-title headline pera-content">
+                    <span class="sub-title"></span>
+                    <h2>Tehnologiýa habarlar</h2>
+                </div>
+                <div class="ft-btn">
+                    <a class="d-flex justify-content-center align-items-center" href="{% url 'Tehnologiya_Habarlar' %}">Beýleki
+                        habarlar</a>
+                </div>
+            </div>
+        </div>
+        <div class="ft-project-slider-wrapper">
+            <div class="ft-project-slider-area">
+                {% for t_h_model in tehnologiya_habarlar %}
+                    <div class="ft-item-innerbox">
+                        <div class="ft-project-itembox position-relative">
+                            <div class="ft-project-img">
+                                <a class="d-flex justify-content-center align-items-center"
+                                   href="{% url 'Tehnologiya_Habar' t_h_model.pk %}"> <img
+                                        src="{{ t_h_model.image.url }}" alt="{{ t_h_model.name }}"
+                                        style="height: 430px; width: 770px;"> </a>
+                            </div>
+                            <div class="ft-project-text headline pera-content">
+                                <h3><a href="{% url 'Tehnologiya_Habar' t_h_model.pk %}">{{ t_h_model.name }}</a></h3>
+                                <p>{{ t_h_model.descriptions | truncatechars:300 }}</p>
+                                <a><i class="far fa-calendar-alt"></i>{{ t_h_model.date }} </a>
+                                <a> <i class="far fa-eye"></i> {{ t_h_model.read }}</a>
+                                <div class="ft-btn">
+                                    <a class="d-flex justify-content-center align-items-center"
+                                       href="{% url 'Tehnologiya_Habar' t_h_model.pk %}">Oka</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="ft-service" class="ft-service-section">
+        <div class="container">
+            <div class="ft-service-content">
+                <div class="row">
+                    <div class="col-lg-3 wow fadeInLeft" data-wow-delay="10ms" data-wow-duration="1500ms">
+                        <div class="ft-service-text-area">
+                            <div class="ft-section-title headline pera-content">
+                                <span class="sub-title"></span>
+                                <h2>Sport Habarlary</h2>
+                            </div>
+                            <div class="ft-btn">
+                                <a class="d-flex justify-content-center align-items-center"
+                                   href="{% url 'Sport_Habarlar' %}">Beýleki
+                                    habarlar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="ft-service-slider-area">
+                            <div class="ft-service-slider-wrapper">
+                                {% for s_model in sport_habarlar %}
+                                    <div class="ft-item-innerbox wow fadeInLeft"
+                                         data-wow-delay="{{ forloop.counter }}90ms"
+                                         data-wow-duration="1500ms">
+                                        <div class="ft-service-slider-item">
+                                            <div class="ft-service-inner-img">
+                                                <a href="{% url 'Sport_Habar' s_model.id %}"><img
+                                                        src="{{ s_model.image.url }}" alt="{{ s_model.name }}"
+                                                        style="height: 150px; width: 270px;"></a>
+                                            </div>
+                                            <div class="ft-service-inner-text headline pera-content position-relative">
+                                                <h3><a href="{% url 'Sport_Habar' s_model.id %}">{{ s_model.name }}</a>
+                                                </h3>
+                                                <p>{{ s_model.descriptions | truncatechars:50 }}</p>
+                                                <a><i class="far fa-calendar-alt"></i>{{ s_model.date }} </a>
+                                                <a><i class="far fa-eye"></i> {{ s_model.read }}</a>
+                                                <br>
+                                                <a class="service-more"
+                                                   href="{% url 'Sport_Habar' s_model.id %}">Oka</a>
+                                                <div class="ft-service-serial position-absolute">
+                                                    <a href="{% url 'Sport_Habar' s_model.id %}">{{ forloop.counter }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ft-blog-2" class="ft-blog-section-2 position-relative">
+        <div class="container">
+            <div class="ft-section-title-2 headline pera-content text-center">
+                <h2>Harby Habarlar</h2>
+            </div>
+            <div class="ft-btn">
+                <a class="d-flex justify-content-center align-items-center" style="margin-bottom: 2%"
+                   href="{% url 'Harby_Habarlar' %}">Beýleki habarlar</a>
+            </div>
+            <div class="ft-blog-content-2">
+                <div class="ft-blog-slider-2">
+                    {% for h_model in harby_habarlar %}
+                        <div class="ft-item-innerbox">
+                            <div class="ft-blog-innerbox-2">
+                                <div class="ft-blog-img-2 position-relative">
+                                    <img src="{{ h_model.image.url }}" style="height: 257px; width: 370px"
+                                         alt="{{ h_model.name }}">
+                                    <div class="ft-blog-meta text-center d-flex align-items-center justify-content-center position-absolute">
+                                        {{ h_model.date }}
+                                    </div>
+                                </div>
+                                <div class="ft-blog-text-2 headline pera-content">
+                                    <h3><a href="{% url 'Harby_Habar' h_model.id %}">{{ h_model.name }}</a></h3>
+                                    <p>{{ h_model.descriptions | truncatechars:100 }}</p>
+                                    <p><a><i class="far fa-calendar-alt"></i>{{ h_model.date }} </a>
+                                        <a><i class="far fa-eye"></i> {{ h_model.read }}</a></p>
+                                    <div class="ft-btn-2">
+                                        <a href="{% url 'Harby_Habar' h_model.id %}">
+                                            <i class="icon-first flaticon-right-arrow"></i>
+                                            <span>Oka</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="carousel_nav  clearfix">
+                    <button type="button" class="blg-left_arrow"><i class="far fa-arrow-left"></i></button>
+                    <button type="button" class="blg-right_arrow"><i class="far fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

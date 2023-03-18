@@ -1,0 +1,96 @@
+{% extends 'Users/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <section id="ft-breadcrumb" class="ft-breadcrumb-section position-relative"
+             data-background="{% static 'assets/img/bg/bread-bg.jpg' %}">
+        <span class="background_overlay"></span>
+        <span class="design-shape position-absolute"><img src="{% static 'assets/img/shape/tmd-sh.png' %}"></span>
+        <div class="container">
+            <div class="ft-breadcrumb-content headline text-center position-relative">
+                <h2>{{ title }}</h2>
+            </div>
+        </div>
+    </section>
+    <section id="ft-blog-feed-details" class="ft-blog-feed-details-section page-padding">
+        <div class="container">
+            <div class="ft-blog-feed-details-content">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="ft-project-item-wrapper filtr-container row">
+                            {% for metbugat in metbugat_list %}
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="ft-portfolio-slider-innerbox position-relative"
+                                         style="width: 237px; height: 364px">
+                                        <div class="ft-portfolio-img" style="width: 237px; height: 364px">
+                                            <img src="{{ metbugat.image.url }}"
+                                                 style="width: 237px; height: 364px">
+                                        </div>
+                                        <div class="ft-portfolio-text headline headline pera-content">
+                                            <h3><a href="{% url 'Metbugat_count' url=metbugat.pdf.url pk=metbugat.id type='Read' %}">{{ metbugat.name }}</a></h3>
+                                            <p><i class="far fa-calendar-alt"></i> {{ metbugat.date }}</p>
+                                            <p><i class="far fa-eye"></i> {{ metbugat.read }}</p>
+                                            <p><i class="far fa-download"></i> {{ metbugat.download }}</p>
+                                            <div class="ft-btn-3">
+                                                <a class="d-flex justify-content-center align-items-center"
+                                                   href="{% url 'Metbugat_count' url=metbugat.pdf.url pk=metbugat.id type='Read' %}">Oka
+                                                    <i class="flaticon-right-arrow"></i></a>
+                                                <a class="d-flex justify-content-center align-items-center"
+                                                   style="margin-top: 5%"
+                                                   href="{% url 'Metbugat_count' url=metbugat.pdf.url pk=metbugat.id type='Download' %}" download>Ýükle<i
+                                                        class="fa fa-download"></i> </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="ft-pagination-item  ul-li">
+                            <ul>
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{% url url %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}">Yza</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled"><a class="page-link" href="">Yza</a></li>
+                                {% endif %}
+                                {% for i in paginator.page_range %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{% url url %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{% url url %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}">Öňe</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled"><a class="page-link" href="">Öňe</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ft-side-bar-wrapper top-stikcy">
+                            <div class="ft-side-bar-widget-area">
+                                <div class="ft-side-bar-widget headline ul-li-block">
+                                    <div class="category-widget">
+                                        <h3 class="widget-title position-relative">{{ title }}</h3>
+                                        <ul>
+                                            {% for gazet in gazetlar %}
+                                                <li><a href="{% url 'Gazet' gazet.name %}">{{ gazet.name }}
+                                                    <span>{{ gazet.count }}</span></a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
